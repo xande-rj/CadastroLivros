@@ -1,12 +1,9 @@
-package LivroCadastro.LivroCadastro;
+package LivroCadastro.LivroCadastro.Livros;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import LivroCadastro.LivroCadastro.Autores.AutorModel;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,16 +16,21 @@ public class LivroModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String nomeLivro;
-  private ArrayList<String> genero;
+  private ArrayList<String> generos;
   private Calendar calendario;
   private Date data = calendario.getTime();
+
+  // muitos livros para um autor
+  @ManyToOne
+  @JoinColumn(name = "autor_id")
+  private AutorModel autor;
 
   public LivroModel() {
 
   }
 
-  public LivroModel(String nomeLivro, ArrayList<String> genero) {
+  public LivroModel(String nomeLivro, ArrayList<String> generos) {
     this.nomeLivro = nomeLivro;
-    this.genero = genero;
+    this.generos = generos;
   }
 }
