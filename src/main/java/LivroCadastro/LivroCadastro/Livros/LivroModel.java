@@ -4,13 +4,16 @@ import java.util.Date;
 
 import LivroCadastro.LivroCadastro.Autores.AutorModel;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 @Entity
 @Table(name = "tb_cadastro_de_livros")
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class LivroModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +28,4 @@ public class LivroModel {
   @JoinColumn(name = "autor_id")
   private AutorModel autor;
 
-  public LivroModel() {
-
-  }
-
-  public LivroModel(String nomeLivro, ArrayList<String> generos) {
-    this.nomeLivro = nomeLivro;
-    this.generos = generos;
-  }
 }
