@@ -2,12 +2,12 @@ package LivroCadastro.LivroCadastro.Livros;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import LivroCadastro.LivroCadastro.Livros.LivrosService;
 
 @RestController
 @RequestMapping
@@ -20,9 +20,18 @@ public class LivroController {
     this.livrosService = livrosService;
   }
 
-  @GetMapping("/helloWorld")
+  @GetMapping("/livros")
   public List<LivroModel> getAll() {
-    return LivrosService.getAll();
+    return livrosService.getAll();
   }
 
+  @PostMapping("/livros")
+  public LivroModel create(@RequestBody LivroModel livroModel) {
+    return livrosService.save(livroModel);
+  }
+
+  @DeleteMapping("/livros")
+  public void delete(@RequestBody Long id) {
+    livrosService.delete(id);
+  }
 }

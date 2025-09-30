@@ -1,7 +1,5 @@
 package LivroCadastro.LivroCadastro.Livros;
 
-import java.util.Date;
-
 import LivroCadastro.LivroCadastro.Autores.AutorModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,11 +15,10 @@ import java.util.Calendar;
 public class LivroModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
   private String nomeLivro;
   private ArrayList<String> generos;
-  private Calendar calendario;
-  private Date data = calendario.getTime();
+  private Calendar data = Calendar.getInstance();
 
   // muitos livros para um autor
   @ManyToOne
