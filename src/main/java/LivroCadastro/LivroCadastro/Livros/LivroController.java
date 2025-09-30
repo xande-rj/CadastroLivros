@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/livros")
 public class LivroController {
 
   // injecao de dependencia
@@ -20,17 +20,17 @@ public class LivroController {
     this.livrosService = livrosService;
   }
 
-  @GetMapping("/livros")
+  @GetMapping
   public List<LivroModel> getAll() {
     return livrosService.getAll();
   }
 
-  @PostMapping("/livros")
+  @PostMapping
   public LivroModel create(@RequestBody LivroModel livroModel) {
     return livrosService.save(livroModel);
   }
 
-  @DeleteMapping("/livros")
+  @DeleteMapping
   public void delete(@RequestBody Long id) {
     livrosService.delete(id);
   }

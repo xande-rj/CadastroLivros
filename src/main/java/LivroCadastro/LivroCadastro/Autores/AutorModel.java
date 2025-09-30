@@ -1,6 +1,8 @@
 package LivroCadastro.LivroCadastro.Autores;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import LivroCadastro.LivroCadastro.Livros.LivroModel;
 import jakarta.persistence.*;
@@ -20,6 +22,7 @@ public class AutorModel {
 
   // um auto para muitos Livros
   @OneToMany(mappedBy = "autor")
-  private ArrayList<LivroModel> livros;
+  @JsonManagedReference
+  private List<LivroModel> livros;
 
 }
