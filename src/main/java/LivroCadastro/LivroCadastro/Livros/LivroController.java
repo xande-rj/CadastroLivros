@@ -1,15 +1,10 @@
 package LivroCadastro.LivroCadastro.Livros;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/livros")
@@ -35,6 +30,23 @@ public class LivroController {
   @PostMapping
   public LivroModel create(@RequestBody LivroModel livroModel) {
     return livrosService.save(livroModel);
+  }
+
+  @PatchMapping("/{id}")
+  public LivroModel changeLivro(@RequestBody LivroModel livroMode, @PathVariable Long id) {
+    Optional<LivroModel> obj = livrosService.getById(id);
+
+    LivroModel lM = obj.get();
+
+    if (livroMode.getNomeLivro() != null) {
+      lM.setNomeLivro(livroMode.getNomeLivro());
+    }
+    if (livroMode.getGeneros() != null) {
+      lM.setGeneros(livroMode.getGeneros());
+
+    }
+    lM.setData(LocalDateTime.now());
+    return this.livrosService.save(lM);
   }
 
   @DeleteMapping("/{id}")

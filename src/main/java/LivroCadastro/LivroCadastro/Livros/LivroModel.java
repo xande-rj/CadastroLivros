@@ -4,15 +4,15 @@ import LivroCadastro.LivroCadastro.Autores.AutorModel;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "tb_cadastro_de_livros")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class LivroModel {
   @Id
@@ -20,7 +20,7 @@ public class LivroModel {
   private Long id;
   private String nomeLivro;
   private List<String> generos;
-  private Calendar data = Calendar.getInstance();
+  private LocalDateTime data = LocalDateTime.now();
 
   // muitos livros para um autor
   @ManyToOne
