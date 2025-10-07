@@ -15,7 +15,8 @@ import lombok.*;
 public class AutorModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
+
   private String nome;
 
   // um autor para muitos Livros
